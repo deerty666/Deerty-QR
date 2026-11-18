@@ -1,0 +1,465 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#100d0a">
+<meta name="description" content="ديرتي - نكهة تجمعنا">
+<title>ديرتي | نكهة تجمعنا</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --gold: #d6ad69;
+  --gold2: #f3d9a6;
+  --bg: #100d0a;
+  --text: #fff8eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 24px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cairo', Tahoma, Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at 50% 8%, rgba(180,125,54,.22), transparent 42%),
+    radial-gradient(ellipse at 0% 100%, rgba(112,64,29,.17), transparent 38%),
+    linear-gradient(145deg,#0b0907,#21170f 55%,#100d0a);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ===== الذرات الذهبية في الخلفية ===== */
+
+.particles {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particles span {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--gold2);
+  opacity: 0;
+  box-shadow: 0 0 9px 2px rgba(214,173,105,.6);
+  animation: floatGold 8s infinite ease-in-out;
+}
+
+.particles span:nth-child(1) {
+  top: 20%; right: 12%; animation-delay: 0s;
+}
+.particles span:nth-child(2) {
+  top: 40%; left: 10%; animation-delay: 2s;
+}
+.particles span:nth-child(3) {
+  top: 65%; right: 8%; animation-delay: 4s;
+}
+.particles span:nth-child(4) {
+  top: 80%; left: 18%; animation-delay: 1s;
+}
+.particles span:nth-child(5) {
+  top: 30%; left: 25%; animation-delay: 3s;
+}
+.particles span:nth-child(6) {
+  top: 55%; right: 22%; animation-delay: 5s;
+}
+
+@keyframes floatGold {
+  0%,100% {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-30px);
+    opacity: .65;
+  }
+}
+
+/* ===== البطاقة الرئيسية ===== */
+
+.card {
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  padding: 35px 24px 28px;
+  border: 1px solid rgba(214,173,105,.5);
+  border-radius: 28px;
+  background: linear-gradient(155deg,#2b2016,#130f0b 70%);
+  box-shadow: 0 25px 75px rgba(0,0,0,.55);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  animation: pageEnter 1.1s ease both;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgba(214,173,105,.15);
+  border-radius: 21px;
+  pointer-events: none;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== العنوان ===== */
+
+.topline {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 22px;
+}
+
+/* ===== الشعار والتوهج الذهبي ===== */
+
+.logo {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle,rgba(214,173,105,.15),transparent);
+  box-shadow:
+    0 0 0 6px rgba(214,173,105,.05),
+    0 0 25px rgba(214,173,105,.18);
+
+  animation: logoGlow 4s infinite ease-in-out;
+}
+
+.logo img {
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+@keyframes logoGlow {
+  0%,100% {
+    box-shadow:
+      0 0 0 6px rgba(214,173,105,.04),
+      0 0 20px rgba(214,173,105,.15);
+  }
+  50% {
+    box-shadow:
+      0 0 0 9px rgba(214,173,105,.08),
+      0 0 38px rgba(214,173,105,.35);
+  }
+}
+
+h1 {
+  margin: 0;
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--gold2);
+}
+
+.slogan {
+  color: var(--gold);
+  font-size: 15px;
+  font-weight: 700;
+  margin: 5px 0;
+}
+
+/* ===== النص الترحيبي ===== */
+
+.intro {
+  margin: 20px auto 25px;
+  color: #c9baa5;
+  font-size: 14px;
+  line-height: 2.1;
+}
+
+.divider {
+  height: 1px;
+  width: 75%;
+  margin: 0 auto 24px;
+  background: linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity: .5;
+}
+
+.choose {
+  color: #e8d7bd;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+/* ===== الأزرار ===== */
+
+.buttons {
+  display: grid;
+  gap: 14px;
+}
+
+.btn {
+  min-height: 68px;
+  padding: 12px 18px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 800;
+  transition: transform .25s ease, box-shadow .25s ease;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.btn:active {
+  transform: scale(.97);
+}
+
+/* ===== زر تحميل التطبيق ===== */
+
+.gold-btn {
+  color: #21170d;
+  background: linear-gradient(115deg,#f5dfb5,#d6ad69,#bd8844);
+  box-shadow: 0 9px 25px rgba(190,137,67,.25);
+}
+
+/* لمعان يمر على الزر */
+
+.gold-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 65%;
+  height: 100%;
+  background: linear-gradient(
+    110deg,
+    transparent,
+    rgba(255,255,255,.48),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: buttonShine 5s infinite;
+  pointer-events: none;
+}
+
+@keyframes buttonShine {
+  0%,55% {
+    left: -120%;
+  }
+  80%,100% {
+    left: 150%;
+  }
+}
+
+.gold-btn:hover {
+  box-shadow: 0 12px 35px rgba(214,173,105,.4);
+}
+
+/* ===== زر الموقع ===== */
+
+.site-btn {
+  color: var(--gold2);
+  border: 1px solid rgba(214,173,105,.65);
+  background: rgba(214,173,105,.07);
+}
+
+.site-btn:hover {
+  border-color: var(--gold2);
+  box-shadow: 0 0 20px rgba(214,173,105,.15);
+}
+
+.btn svg {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.btn-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.5;
+}
+
+.btn-text small {
+  font-size: 10px;
+  font-weight: 600;
+  opacity: .75;
+}
+
+/* ===== أسفل الصفحة ===== */
+
+.note {
+  margin-top: 21px;
+  color: #aa9a83;
+  font-size: 11px;
+  line-height: 2;
+}
+
+.footer {
+  margin-top: 25px;
+  color: #96836a;
+  font-size: 11px;
+}
+
+/* ===== توافق الجوال ===== */
+
+@media(max-width:380px) {
+  .card {
+    padding: 28px 18px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  .btn {
+    font-size: 15px;
+  }
+}
+
+/* احترام إعداد تقليل الحركة في الجهاز */
+
+@media(prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- مؤثرات الذرات الذهبية -->
+
+<div class="particles" aria-hidden="true">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<main class="card">
+
+  <div class="topline">مطاعم ومطابخ</div>
+
+  <!-- شعار ديرتي الأصلي -->
+
+  <div class="logo">
+    <img src="logo.png" alt="شعار ديرتي">
+  </div>
+
+  <h1>ديرتي</h1>
+
+  <p class="slogan">نكهة تجمعنا</p>
+
+  <p class="intro">
+    يا مرحبا بك في ديرتي
+    <br>
+    كل اللي تشتهيه صار أقرب لك
+    <br>
+    اختر طريقتك وابدأ طلبك
+  </p>
+
+  <div class="divider"></div>
+
+  <p class="choose">كيف تحب تزورنا؟</p>
+
+  <div class="buttons">
+
+    <!-- تحميل التطبيق -->
+
+    <a class="btn gold-btn"
+       href="https://play.google.com/store/apps/details?id=com.deerty.app"
+       target="_blank"
+       rel="noopener">
+
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M5 3.8c-.6.4-1 1.1-1 2v12.4c0 .9.4 1.6 1 2l8-8.2L5 3.8Z"/>
+        <path d="m14.1 10.5 3-3.1-9.9-5.1c-.8-.4-1.6-.2-2.2.2l9.1 8Z"/>
+        <path d="m14.1 13.5-9.1 8c.6.4 1.4.6 2.2.2l9.9-5.1-3-3.1Z"/>
+        <path d="m18.2 8.1-3.1 3.2 3.1 3.2 2.1-1.1c1.2-.6 1.2-1.6 0-2.2l-2.1-1.1Z"/>
+      </svg>
+
+      <span class="btn-text">
+        تحميل تطبيق ديرتي
+        <small>اطلب بسهولة من جوالك</small>
+      </span>
+
+    </a>
+
+    <!-- تصفح الموقع -->
+
+    <a class="btn site-btn"
+       href="https://deerty666.github.io/"
+       target="_blank"
+       rel="noopener">
+
+      <svg viewBox="0 0 24 24"
+           fill="none"
+           stroke="currentColor"
+           stroke-width="1.8"
+           stroke-linecap="round">
+
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M3.5 9h17M3.5 15h17"/>
+        <path d="M12 3c2.2 2.4 3.2 5.4 3.2 9s-1 6.6-3.2 9c-2.2-2.4-3.2-5.4-3.2-9s1-6.6 3.2-9Z"/>
+
+      </svg>
+
+      <span class="btn-text">
+        تصفح الموقع والمنيو
+        <small>شاهد الأصناف والأسعار</small>
+      </span>
+
+    </a>
+
+  </div>
+
+  <p class="note">
+    امسح رمز QR مرة واحدة
+    <br>
+    ثم اختر الخدمة المناسبة لك
+  </p>
+
+  <div class="footer">
+    سحايب ديرتي · حياكم الله
+  </div>
+
+</main>
+
+</body>
+</html>
