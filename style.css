@@ -1904,9 +1904,10 @@ body {
 /* بيانات العميل */
 #cartDrawer #customerInfo {
     flex: 0 1 auto !important;
-    max-height: 155px !important;
+    max-height: 190px !important;
     overflow-y: auto !important;
     min-height: 0 !important;
+    padding-bottom: 10px !important;
 }
 
 /* حالة الموقع */
