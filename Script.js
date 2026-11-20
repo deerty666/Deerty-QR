@@ -1346,7 +1346,11 @@ sendWhatsapp.addEventListener('click', () => {
 // العنوان التفصيلي للعميل
 const manualAddress =
     document.getElementById('customerAddress')?.value.trim() || '';
+const customerName =
+    document.getElementById('customerName')?.value.trim() || '';
 
+const customerPhone =
+    document.getElementById('customerPhone')?.value.trim() || '';
     // بيانات الفرع
     const branchDeliveryFee = currentBranch.deliveryFee || 0;
     const whatsappNumber = currentBranch.whatsapp;
@@ -1361,11 +1365,20 @@ const manualAddress =
     const lines = [];
 
     lines.push('🍽️ طلب جديد — سحايب ديرتي');
-    lines.push('');
-    lines.push(`📍 الفرع: ${currentBranch.name}`);
-    lines.push('');
-    lines.push('━━━━━━━━━━━━');
+lines.push('');
+lines.push(`📍 الفرع: ${currentBranch.name}`);
+lines.push('');
 
+lines.push('👤 بيانات العميل');
+lines.push(`الاسم: ${customerName || 'غير محدد'}`);
+lines.push(`الجوال: ${customerPhone || 'غير محدد'}`);
+
+if (deliveryType === 'delivery' && manualAddress) {
+    lines.push(`🏠 العنوان التفصيلي: ${manualAddress}`);
+}
+
+lines.push('');
+lines.push('━━━━━━━━━━━━');
     let subtotal = 0;
 
     // =====================================================
