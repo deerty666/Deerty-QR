@@ -2,358 +2,378 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#100d0a">
-<meta name="description" content="ديرتي - نكهة تجمعنا">
-<title>ديرتي | نكهة تجمعنا</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>اختيار فرع ديرتي</title>
+<meta name="theme-color" content="#1A1512">
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
-
 :root {
-  --gold: #d6ad69;
-  --gold2: #f3d9a6;
-  --bg: #100d0a;
-  --text: #fff8eb;
+  --gold:#c39e6a;
+  --gold2:#e7c98a;
+  --dark:#100b08;
+  --card:#211813;
+  --text:#fff;
+  --muted:#d8c7ad;
+  --green:#178c35;
 }
 
 * {
-  box-sizing: border-box;
+  box-sizing:border-box;
+  font-family:"Cairo",Arial,sans-serif;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body {
+  width:100%;
+  height:100%;
+  margin:0;
+  overflow:hidden;
 }
 
 body {
-  margin: 0;
-  min-height: 100vh;
-  padding: 24px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Cairo', Tahoma, Arial, sans-serif;
-  color: var(--text);
+  color:var(--text);
   background:
-    radial-gradient(ellipse at 50% 8%, rgba(180,125,54,.22), transparent 42%),
-    radial-gradient(ellipse at 0% 100%, rgba(112,64,29,.17), transparent 38%),
-    linear-gradient(145deg,#0b0907,#21170f 55%,#100d0a);
-  overflow-x: hidden;
-  position: relative;
+    radial-gradient(circle at top,rgba(195,158,106,.20),transparent 40%),
+    linear-gradient(180deg,#1b120c,#080604);
 }
 
-/* ===== الذرات الذهبية في الخلفية ===== */
-
-.particles {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
+.page {
+  width:100%;
+  max-width:520px;
+  height:100vh;
+  height:100dvh;
+  margin:auto;
+  padding:8px 13px;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  gap:7px;
 }
 
-.particles span {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: var(--gold2);
-  opacity: 0;
-  box-shadow: 0 0 9px 2px rgba(214,173,105,.6);
-  animation: floatGold 8s infinite ease-in-out;
+/* الشعار والعنوان */
+
+.hero {
+  flex:0 0 auto;
+  text-align:center;
+  padding:3px 0 5px;
 }
 
-.particles span:nth-child(1) {
-  top: 20%; right: 12%; animation-delay: 0s;
+.logo-wrap {
+  width:55px;
+  height:55px;
+  margin:0 auto 3px;
+  border-radius:50%;
+  border:1px solid rgba(195,158,106,.55);
+  background:rgba(195,158,106,.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 0 18px rgba(195,158,106,.20);
 }
-.particles span:nth-child(2) {
-  top: 40%; left: 10%; animation-delay: 2s;
-}
-.particles span:nth-child(3) {
-  top: 65%; right: 8%; animation-delay: 4s;
-}
-.particles span:nth-child(4) {
-  top: 80%; left: 18%; animation-delay: 1s;
-}
-.particles span:nth-child(5) {
-  top: 30%; left: 25%; animation-delay: 3s;
-}
-.particles span:nth-child(6) {
-  top: 55%; right: 22%; animation-delay: 5s;
-}
-
-@keyframes floatGold {
-  0%,100% {
-    transform: translateY(15px);
-    opacity: 0;
-  }
-  50% {
-    transform: translateY(-30px);
-    opacity: .65;
-  }
-}
-
-/* ===== البطاقة الرئيسية ===== */
-
-.card {
-  width: 100%;
-  max-width: 450px;
-  text-align: center;
-  padding: 35px 24px 28px;
-  border: 1px solid rgba(214,173,105,.5);
-  border-radius: 28px;
-  background: linear-gradient(155deg,#2b2016,#130f0b 70%);
-  box-shadow: 0 25px 75px rgba(0,0,0,.55);
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-
-  animation: pageEnter 1.1s ease both;
-}
-
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 9px;
-  border: 1px solid rgba(214,173,105,.15);
-  border-radius: 21px;
-  pointer-events: none;
-}
-
-@keyframes pageEnter {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===== العنوان ===== */
-
-.topline {
-  color: var(--gold);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  margin-bottom: 22px;
-}
-
-/* ===== الشعار والتوهج الذهبي ===== */
 
 .logo {
-  width: 110px;
-  height: 110px;
-  margin: 0 auto 15px;
-  border-radius: 50%;
-  border: 2px solid var(--gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle,rgba(214,173,105,.15),transparent);
-  box-shadow:
-    0 0 0 6px rgba(214,173,105,.05),
-    0 0 25px rgba(214,173,105,.18);
-
-  animation: logoGlow 4s infinite ease-in-out;
-}
-
-.logo img {
-  width: 82%;
-  height: 82%;
-  object-fit: contain;
-  border-radius: 50%;
-}
-
-@keyframes logoGlow {
-  0%,100% {
-    box-shadow:
-      0 0 0 6px rgba(214,173,105,.04),
-      0 0 20px rgba(214,173,105,.15);
-  }
-  50% {
-    box-shadow:
-      0 0 0 9px rgba(214,173,105,.08),
-      0 0 38px rgba(214,173,105,.35);
-  }
+  width:43px;
+  height:43px;
+  object-fit:contain;
 }
 
 h1 {
-  margin: 0;
-  font-size: 42px;
-  font-weight: 900;
-  color: var(--gold2);
+  margin:2px 0;
+  color:var(--gold2);
+  font-size:23px;
+  font-weight:900;
+  line-height:1.35;
 }
 
-.slogan {
-  color: var(--gold);
-  font-size: 15px;
-  font-weight: 700;
-  margin: 5px 0;
+.subtitle {
+  color:var(--muted);
+  font-size:12px;
+  font-weight:800;
 }
 
-/* ===== النص الترحيبي ===== */
+/* شريط الموقع */
 
-.intro {
-  margin: 20px auto 25px;
-  color: #c9baa5;
-  font-size: 14px;
-  line-height: 2.1;
+.location-bar {
+  flex:0 0 39px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:4px 10px;
+  border:1px solid rgba(195,158,106,.55);
+  border-radius:14px;
+  background:rgba(195,158,106,.09);
 }
 
-.divider {
-  height: 1px;
-  width: 75%;
-  margin: 0 auto 24px;
-  background: linear-gradient(90deg,transparent,var(--gold),transparent);
-  opacity: .5;
+.location-text {
+  font-size:12px;
+  font-weight:800;
+  color:var(--muted);
 }
 
-.choose {
-  color: #e8d7bd;
-  font-size: 14px;
-  margin-bottom: 16px;
+.location-btn {
+  border:1px solid var(--gold);
+  color:var(--gold2);
+  background:transparent;
+  border-radius:20px;
+  padding:3px 11px;
+  font-size:11px;
+  font-weight:900;
+  cursor:pointer;
 }
 
-/* ===== الأزرار ===== */
+/* قائمة الفروع */
 
-.buttons {
-  display: grid;
-  gap: 14px;
+.branches {
+  flex:1;
+  min-height:0;
+  display:grid;
+  grid-template-rows:repeat(3,minmax(0,1fr));
+  gap:8px;
+}
+
+.branch-card {
+  min-height:0;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:9px 12px;
+  border-radius:20px;
+  border:1px solid rgba(195,158,106,.55);
+  background:linear-gradient(145deg,#302219,#17100c);
+  box-shadow:0 5px 15px rgba(0,0,0,.30);
+}
+
+.branch-card.nearest {
+  border:2px solid #e6b95f;
+  box-shadow:0 0 15px rgba(231,185,95,.22);
+}
+
+.branch-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:5px;
+}
+
+.branch-title {
+  font-size:16px;
+  font-weight:900;
+  line-height:1.5;
+  color:white;
+}
+
+.nearest-badge {
+  display:none;
+  flex-shrink:0;
+  background:linear-gradient(90deg,#f4c37d,#c39e6a);
+  color:#201309;
+  padding:2px 8px;
+  border-radius:15px;
+  font-size:10px;
+  font-weight:900;
+}
+
+.nearest .nearest-badge {
+  display:block;
+}
+
+.open-badge {
+  flex-shrink:0;
+  background:rgba(17,105,35,.75);
+  color:white;
+  border-radius:20px;
+  padding:3px 9px;
+  font-size:10px;
+  font-weight:900;
+}
+
+.open-badge.closed {
+  background:rgba(160,35,35,.8);
+}
+
+.branch-address {
+  color:var(--muted);
+  font-size:11px;
+  font-weight:700;
+  margin-top:2px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.branch-details {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:5px;
+  margin:3px 0 6px;
+  color:var(--gold2);
+  font-size:10px;
+  font-weight:800;
+}
+
+.actions {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
 }
 
 .btn {
-  min-height: 68px;
-  padding: 12px 18px;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 13px;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 800;
-  transition: transform .25s ease, box-shadow .25s ease;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
+  min-width:0;
+  height:36px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:900;
+  transition:.2s;
 }
 
 .btn:active {
-  transform: scale(.97);
+  transform:scale(.96);
 }
 
-/* ===== زر تحميل التطبيق ===== */
-
-.gold-btn {
-  color: #21170d;
-  background: linear-gradient(115deg,#f5dfb5,#d6ad69,#bd8844);
-  box-shadow: 0 9px 25px rgba(190,137,67,.25);
+.btn-order {
+  color:#201309;
+  background:linear-gradient(135deg,#f0d292,#c39e6a,#a77b43);
+  box-shadow:0 3px 12px rgba(195,158,106,.22);
 }
 
-/* لمعان يمر على الزر */
-
-.gold-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 65%;
-  height: 100%;
-  background: linear-gradient(
-    110deg,
-    transparent,
-    rgba(255,255,255,.48),
-    transparent
-  );
-  transform: skewX(-20deg);
-  animation: buttonShine 5s infinite;
-  pointer-events: none;
+.btn-map {
+  color:var(--gold2);
+  background:#100b08;
+  border:1px solid var(--gold);
 }
 
-@keyframes buttonShine {
-  0%,55% {
-    left: -120%;
-  }
-  80%,100% {
-    left: 150%;
-  }
-}
-
-.gold-btn:hover {
-  box-shadow: 0 12px 35px rgba(214,173,105,.4);
-}
-
-/* ===== زر الموقع ===== */
-
-.site-btn {
-  color: var(--gold2);
-  border: 1px solid rgba(214,173,105,.65);
-  background: rgba(214,173,105,.07);
-}
-
-.site-btn:hover {
-  border-color: var(--gold2);
-  box-shadow: 0 0 20px rgba(214,173,105,.15);
-}
-
-.btn svg {
-  width: 26px;
-  height: 26px;
-  flex-shrink: 0;
-}
-
-.btn-text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  line-height: 1.5;
-}
-
-.btn-text small {
-  font-size: 10px;
-  font-weight: 600;
-  opacity: .75;
-}
-
-/* ===== أسفل الصفحة ===== */
-
-.note {
-  margin-top: 21px;
-  color: #aa9a83;
-  font-size: 11px;
-  line-height: 2;
-}
+/* أسفل الشاشة */
 
 .footer {
-  margin-top: 25px;
-  color: #96836a;
-  font-size: 11px;
+  flex:0 0 auto;
+  text-align:center;
+  color:#b5a38b;
+  font-size:10px;
+  font-weight:700;
+  padding:3px 0;
 }
 
-/* ===== توافق الجوال ===== */
+/* فيديو البداية */
 
-@media(max-width:380px) {
-  .card {
-    padding: 28px 18px;
+#intro-screen {
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:#000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+#intro-video {
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+#skip-intro {
+  position:absolute;
+  bottom:25px;
+  right:50%;
+  transform:translateX(50%);
+  padding:8px 22px;
+  border:1px solid var(--gold);
+  border-radius:25px;
+  background:#211813;
+  color:var(--gold2);
+  font-weight:900;
+}
+
+/* الشاشات الصغيرة والقصيرة */
+
+@media(max-height:700px) {
+  .page {
+    padding-top:4px;
+    padding-bottom:3px;
+    gap:5px;
+  }
+
+  .hero {
+    padding:0 0 2px;
+  }
+
+  .logo-wrap {
+    width:43px;
+    height:43px;
+  }
+
+  .logo {
+    width:34px;
+    height:34px;
   }
 
   h1 {
-    font-size: 36px;
+    font-size:20px;
+  }
+
+  .subtitle {
+    font-size:10px;
+  }
+
+  .location-bar {
+    flex-basis:34px;
+  }
+
+  .branches {
+    gap:5px;
+  }
+
+  .branch-card {
+    padding:5px 9px;
+    border-radius:15px;
+  }
+
+  .branch-title {
+    font-size:14px;
+  }
+
+  .branch-address {
+    font-size:10px;
+  }
+
+  .branch-details {
+    margin:1px 0 3px;
+    font-size:9px;
   }
 
   .btn {
-    font-size: 15px;
+    height:31px;
+    font-size:11px;
+  }
+
+  .footer {
+    font-size:9px;
+    padding:0;
   }
 }
 
-/* احترام إعداد تقليل الحركة في الجهاز */
+@media(max-width:360px) {
+  .page {
+    padding-left:9px;
+    padding-right:9px;
+  }
 
-@media(prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
+  .branch-title {
+    font-size:13px;
+  }
+
+  .btn {
+    font-size:10px;
   }
 }
 </style>
@@ -361,105 +381,338 @@ h1 {
 
 <body>
 
-<!-- مؤثرات الذرات الذهبية -->
+<!-- فيديو البداية -->
 
-<div class="particles" aria-hidden="true">
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
+<div id="intro-screen">
+  <video id="intro-video" autoplay muted playsinline preload="auto">
+    <source src="888.mp4" type="video/mp4">
+  </video>
+  <button id="skip-intro">تخطي المقدمة ⏭</button>
 </div>
 
-<main class="card">
+<main class="page">
 
-  <div class="topline">مطاعم ومطابخ</div>
+  <!-- الشعار -->
 
-  <!-- شعار ديرتي الأصلي -->
+  <header class="hero">
+    <div class="logo-wrap">
+      <img src="logo.png" class="logo" alt="ديرتي">
+    </div>
 
-  <div class="logo">
-    <img src="logo.png" alt="شعار ديرتي">
+    <h1>اختر الفرع المناسب لك</h1>
+    <div class="subtitle">مطاعم ومطابخ سحايب ديرتي</div>
+  </header>
+
+  <!-- تحديد الموقع -->
+
+  <div class="location-bar">
+    <div class="location-text" id="location-status">
+      📍 اختر الفرع الأقرب لك
+    </div>
+
+    <button class="location-btn" onclick="refreshLocation()">
+      📍 تحديد موقعي
+    </button>
   </div>
 
-  <h1>ديرتي</h1>
+  <!-- الفروع -->
 
-  <p class="slogan">نكهة تجمعنا</p>
+  <section class="branches" id="branches-list">
 
-  <p class="intro">
-    يا مرحبا بك في ديرتي
-    <br>
-    كل اللي تشتهيه صار أقرب لك
-    <br>
-    اختر طريقتك وابدأ طلبك
-  </p>
+    <article class="branch-card" data-id="1">
+      <div class="branch-top">
+        <div class="branch-title">فرع لبن الأحمدية</div>
+        <span class="nearest-badge">⭐ الأقرب لك</span>
+        <span class="open-badge"></span>
+      </div>
 
-  <div class="divider"></div>
+      <div class="branch-address">
+        طريق الأمير أحمد بن عبدالعزيز
+      </div>
 
-  <p class="choose">كيف تحب تزورنا؟</p>
+      <div class="branch-details">
+        <span class="distance">📍 فرع الرياض</span>
+        <span>🕒 10 صباحاً - 12 ليلاً</span>
+      </div>
 
-  <div class="buttons">
+      <div class="actions">
+        <a href="menu.html?branch=branch1"
+           class="btn btn-order">🛒 اطلب الآن</a>
 
-    <!-- تحميل التطبيق -->
+        <a href="https://maps.app.goo.gl/Pi2rYpat4CMVgb4a6"
+           target="_blank" rel="noopener"
+           class="btn btn-map">📍 الموقع</a>
+      </div>
+    </article>
 
-    <a class="btn gold-btn"
-       href="https://play.google.com/store/apps/details?id=com.deerty.app"
-       target="_blank"
-       rel="noopener">
+    <article class="branch-card" data-id="2">
+      <div class="branch-top">
+        <div class="branch-title">فرع شمال الرياض (مخرج 6)</div>
+        <span class="nearest-badge">⭐ الأقرب لك</span>
+        <span class="open-badge"></span>
+      </div>
 
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M5 3.8c-.6.4-1 1.1-1 2v12.4c0 .9.4 1.6 1 2l8-8.2L5 3.8Z"/>
-        <path d="m14.1 10.5 3-3.1-9.9-5.1c-.8-.4-1.6-.2-2.2.2l9.1 8Z"/>
-        <path d="m14.1 13.5-9.1 8c.6.4 1.4.6 2.2.2l9.9-5.1-3-3.1Z"/>
-        <path d="m18.2 8.1-3.1 3.2 3.1 3.2 2.1-1.1c1.2-.6 1.2-1.6 0-2.2l-2.1-1.1Z"/>
-      </svg>
+      <div class="branch-address">
+        شمال الرياض - مخرج 6
+      </div>
 
-      <span class="btn-text">
-        تحميل تطبيق ديرتي
-        <small>اطلب بسهولة من جوالك</small>
-      </span>
+      <div class="branch-details">
+        <span class="distance">📍 فرع الرياض</span>
+        <span>🕒 10 صباحاً - 12 ليلاً</span>
+      </div>
 
-    </a>
+      <div class="actions">
+        <a href="menu.html?branch=branch2"
+           class="btn btn-order">🛒 اطلب الآن</a>
 
-    <!-- تصفح الموقع -->
+        <a href="https://maps.app.goo.gl/gSjNaNCZFMXgwXfn9"
+           target="_blank" rel="noopener"
+           class="btn btn-map">📍 الموقع</a>
+      </div>
+    </article>
 
-    <a class="btn site-btn"
-       href="https://deerty666.github.io/"
-       target="_blank"
-       rel="noopener">
+    <article class="branch-card" data-id="3">
+      <div class="branch-top">
+        <div class="branch-title">فرع الروضة</div>
+        <span class="nearest-badge">⭐ الأقرب لك</span>
+        <span class="open-badge"></span>
+      </div>
 
-      <svg viewBox="0 0 24 24"
-           fill="none"
-           stroke="currentColor"
-           stroke-width="1.8"
-           stroke-linecap="round">
+      <div class="branch-address">
+        حي الروضة - شارع خالد بن الوليد
+      </div>
 
-        <circle cx="12" cy="12" r="9"/>
-        <path d="M3.5 9h17M3.5 15h17"/>
-        <path d="M12 3c2.2 2.4 3.2 5.4 3.2 9s-1 6.6-3.2 9c-2.2-2.4-3.2-5.4-3.2-9s1-6.6 3.2-9Z"/>
+      <div class="branch-details">
+        <span class="distance">📍 فرع الرياض</span>
+        <span>🕒 10 صباحاً - 12 ليلاً</span>
+      </div>
 
-      </svg>
+      <div class="actions">
+        <a href="menu.html?branch=branch3"
+           class="btn btn-order">🛒 اطلب الآن</a>
 
-      <span class="btn-text">
-        تصفح الموقع والمنيو
-        <small>شاهد الأصناف والأسعار</small>
-      </span>
+        <a href="https://maps.app.goo.gl/zYRH2ZDGDqMELm8m7"
+           target="_blank" rel="noopener"
+           class="btn btn-map">📍 الموقع</a>
+      </div>
+    </article>
 
-    </a>
+  </section>
 
-  </div>
-
-  <p class="note">
-    امسح رمز QR مرة واحدة
-    <br>
-    ثم اختر الخدمة المناسبة لك
-  </p>
-
-  <div class="footer">
-    سحايب ديرتي · حياكم الله
-  </div>
+  <footer class="footer">
+    أهلاً وسهلاً بكم في ديرتي ❤️
+  </footer>
 
 </main>
+
+<script>
+
+/* ================= فيديو البداية ================= */
+
+const intro = document.getElementById("intro-screen");
+const video = document.getElementById("intro-video");
+
+function finishIntro() {
+  intro.style.display = "none";
+  video.pause();
+}
+
+document.getElementById("skip-intro")
+  .addEventListener("click",finishIntro);
+
+video.addEventListener("ended",finishIntro);
+
+video.addEventListener("error",finishIntro);
+
+video.play().catch(()=>{});
+
+/* ================= بيانات الفروع ================= */
+
+const branches = [
+  {
+    id:1,
+    lat:24.6369,
+    lng:46.5885
+  },
+  {
+    id:2,
+    lat:24.8500,
+    lng:46.7200
+  },
+  {
+    id:3,
+    lat:24.7500,
+    lng:46.6800
+  }
+];
+
+/* ================= حساب المسافة ================= */
+
+function getDistance(lat1,lon1,lat2,lon2) {
+  const R = 6371;
+
+  const dLat = (lat2-lat1)*Math.PI/180;
+  const dLon = (lon2-lon1)*Math.PI/180;
+
+  const a =
+    Math.sin(dLat/2)**2 +
+    Math.cos(lat1*Math.PI/180) *
+    Math.cos(lat2*Math.PI/180) *
+    Math.sin(dLon/2)**2;
+
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+
+/* ================= ترتيب الفروع ================= */
+
+function arrangeBranches(lat,lng) {
+
+  const distances = branches.map(branch => ({
+    id:branch.id,
+    distance:getDistance(
+      lat,lng,branch.lat,branch.lng
+    )
+  }));
+
+  distances.sort((a,b)=>a.distance-b.distance);
+
+  const container = document.getElementById("branches-list");
+
+  distances.forEach((item,index)=>{
+
+    const card = container.querySelector(
+      `[data-id="${item.id}"]`
+    );
+
+    card.classList.toggle("nearest",index===0);
+
+    card.querySelector(".distance").textContent =
+      "🚗 " + item.distance.toFixed(1) + " كم تقريباً";
+
+    container.appendChild(card);
+
+  });
+
+  document.getElementById("location-status").textContent =
+    "📍 تم تحديد أقرب فرع لك";
+}
+
+/* ================= تحديد الموقع ================= */
+
+function refreshLocation() {
+
+  const status = document.getElementById("location-status");
+
+  if(!navigator.geolocation) {
+    status.textContent = "الموقع غير مدعوم";
+    return;
+  }
+
+  status.textContent = "⏳ جاري تحديد موقعك...";
+
+  navigator.geolocation.getCurrentPosition(
+
+    position => {
+
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+
+      localStorage.setItem("lastLocation",JSON.stringify({
+        lat,lng
+      }));
+
+      arrangeBranches(lat,lng);
+
+    },
+
+    error => {
+
+      status.textContent = "📍 اختر الفرع المناسب لك";
+
+    },
+
+    {
+      enableHighAccuracy:true,
+      timeout:10000,
+      maximumAge:300000
+    }
+
+  );
+}
+
+/* ================= إعدادات ساعات العمل ================= */
+
+// عدّل هذين الرقمين فقط
+const OPEN_HOUR = 10;  // 10 صباحاً
+const CLOSE_HOUR = 0;  // 12 ليلاً (منتصف الليل)
+
+function updateBranchStatus() {
+
+  const now = new Date();
+
+  const saudiTime = new Date(
+    now.toLocaleString("en-US", {
+      timeZone: "Asia/Riyadh"
+    })
+  );
+
+  const currentTime =
+    saudiTime.getHours() * 60 +
+    saudiTime.getMinutes();
+
+  const openTime = OPEN_HOUR * 60;
+  const closeTime = CLOSE_HOUR * 60;
+
+  const open = openTime < closeTime
+    ? currentTime >= openTime && currentTime < closeTime
+    : currentTime >= openTime || currentTime < closeTime;
+
+  document.querySelectorAll(".open-badge").forEach(badge => {
+
+    if (open) {
+      badge.textContent = "🟢 مفتوح الآن";
+      badge.classList.remove("closed");
+    } else {
+      badge.textContent = "🔴 مغلق الآن";
+      badge.classList.add("closed");
+    }
+
+  });
+}
+
+// تحديث تلقائي كل دقيقة
+setInterval(updateBranchStatus, 60000);
+
+
+/* ================= تشغيل الصفحة ================= */
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+  updateBranchStatus();
+
+  const saved = localStorage.getItem("lastLocation");
+
+  if(saved) {
+    try {
+      const location = JSON.parse(saved);
+
+      if(Number.isFinite(location.lat) &&
+         Number.isFinite(location.lng)) {
+
+        arrangeBranches(location.lat,location.lng);
+        return;
+
+      }
+    } catch(error) {
+      localStorage.removeItem("lastLocation");
+    }
+  }
+
+  refreshLocation();
+
+});
+
+</script>
 
 </body>
 </html>
