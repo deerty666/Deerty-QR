@@ -1343,9 +1343,9 @@ sendWhatsapp.addEventListener('click', () => {
     alert('⚠️ اختر توصيل أو استلام أولاً');
     return;
 }
-    // العنوان اليدوي
-    const manualAddress =
-        document.getElementById('manualAddress')?.value.trim() || '';
+// العنوان التفصيلي للعميل
+const manualAddress =
+    document.getElementById('customerAddress')?.value.trim() || '';
 
     // بيانات الفرع
     const branchDeliveryFee = currentBranch.deliveryFee || 0;
@@ -1469,8 +1469,8 @@ sendWhatsapp.addEventListener('click', () => {
 
     if (deliveryType === 'delivery') {
 // التأكد من تحديد موقع العميل قبل إرسال طلب التوصيل
-if (!userLocation) {
-    alert('📍 فضلاً انتظر حتى يتم تحديد موقعك بنجاح قبل إرسال الطلب');
+if (!userLocation && !manualAddress) {
+    alert('📍 فضلاً حدد موقعك أو اكتب عنوانك التفصيلي قبل إرسال الطلب');
 
     if (locationStatus) {
         locationStatus.scrollIntoView({
