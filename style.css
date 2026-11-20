@@ -1870,3 +1870,70 @@ body {
 #legacyDeliveryOptions {
     display: none !important;
 }
+
+/* =========================================
+   DEERTY - تثبيت أزرار السلة عند كثرة الأصناف
+========================================= */
+
+#cartDrawer {
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    bottom: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+}
+
+/* قائمة الأصناف هي التي تتمدد وتتحرك */
+#cartDrawer #cartItems {
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* اقتراحات الأصناف */
+#cartDrawer #cartSuggestions {
+    flex: 0 1 auto !important;
+    max-height: 125px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+}
+
+/* بيانات العميل */
+#cartDrawer #customerInfo {
+    flex: 0 1 auto !important;
+    max-height: 155px !important;
+    overflow-y: auto !important;
+    min-height: 0 !important;
+}
+
+/* حالة الموقع */
+#cartDrawer > .delivery-options-container {
+    flex: 0 0 auto !important;
+}
+
+/* تثبيت إجمالي الطلب وأزرار الإرسال */
+#cartDrawer > .cart-footer {
+    flex: 0 0 auto !important;
+    position: relative !important;
+    margin-top: auto !important;
+    padding: 8px 12px !important;
+    padding-bottom: max(8px, env(safe-area-inset-bottom)) !important;
+    background: #1e1e1e !important;
+    border-top: 1px solid #c39e6a !important;
+    z-index: 20 !important;
+}
+
+/* إبقاء زر واتساب واضحاً */
+#cartDrawer #sendWhatsapp,
+#cartDrawer #clearCart {
+    min-height: 48px !important;
+    flex-shrink: 0 !important;
+}
+
+/* ضمان عدم خروج محتويات السلة */
+#cartDrawer > * {
+    min-width: 0;
+}
