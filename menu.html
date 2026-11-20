@@ -221,7 +221,43 @@ body {
     <div class="branch-option" data-branch="branch2">شمال الرياض مخرج ٦</div>
     <div class="branch-option" data-branch="branch3">الروضة خالد بن الوليد</div>
 </div>
+<!-- نافذة اختيار نوع الطلب -->
+<div id="orderTypeModal" style="display:none;"
+     role="dialog" aria-modal="true"
+     aria-labelledby="orderTypeTitle">
 
+    <div class="order-type-content">
+
+        <div class="order-type-logo">🍽️</div>
+
+        <h2 id="orderTypeTitle">أهلاً بك في ديرتي</h2>
+
+        <p>كيف تحب تستلم طلبك اليوم؟</p>
+
+        <div class="order-type-options">
+
+            <button type="button" id="chooseDelivery"
+                    class="order-type-btn delivery-btn">
+                <span class="order-type-icon">🚚</span>
+                <strong>توصيل للمنزل</strong>
+                <small>رسوم التوصيل 5 ريال</small>
+            </button>
+
+            <button type="button" id="choosePickup"
+                    class="order-type-btn pickup-btn">
+                <span class="order-type-icon">🏪</span>
+                <strong>استلام من الفرع</strong>
+                <small>بدون رسوم توصيل</small>
+            </button>
+
+        </div>
+
+        <div class="order-type-note">
+            ✨ يسعدنا خدمتك في سحايب ديرتي
+        </div>
+
+    </div>
+</div>
 <div id="sections" aria-hidden="false"></div>
 <main id="menuList" role="list"></main>
 
