@@ -1339,14 +1339,10 @@ sendWhatsapp.addEventListener('click', () => {
         return;
     }
     // إجبار العميل على اختيار نوع الطلب
-    const selectedDeliveryType = document.querySelector(
-        'input[name="deliveryType"]:checked'
-    );
-
     if (!selectedDeliveryType) {
-        alert('⚠️ فضلاً اختر نوع الطلب أولاً: توصيل أو استلام من الفرع');
-        return;
-    }
+    alert('⚠️ اختر توصيل أو استلام أولاً');
+    return;
+}
     // العنوان اليدوي
     const manualAddress =
         document.getElementById('manualAddress')?.value.trim() || '';
@@ -1356,10 +1352,7 @@ sendWhatsapp.addEventListener('click', () => {
     const whatsappNumber = currentBranch.whatsapp;
 
     // نوع الطلب
-    const deliveryType =
-        document.querySelector(
-            'input[name="deliveryType"]:checked'
-        )?.value;
+    const deliveryType = selectedDeliveryType;
 
     // =====================================================
     // 🍽️ بداية رسالة الواتساب
@@ -1475,7 +1468,19 @@ sendWhatsapp.addEventListener('click', () => {
     // =====================================================
 
     if (deliveryType === 'delivery') {
+// التأكد من تحديد موقع العميل قبل إرسال طلب التوصيل
+if (!userLocation) {
+    alert('📍 فضلاً انتظر حتى يتم تحديد موقعك بنجاح قبل إرسال الطلب');
 
+    if (locationStatus) {
+        locationStatus.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+    }
+
+    return;
+}
         lines.push(
             `2. نوع الطلب: توصيل (فرع ${currentBranch.name})`
         );
