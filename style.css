@@ -1758,3 +1758,111 @@ body {
 #cartDrawer {
     z-index: 10001 !important;
 }
+/* ===== نافذة اختيار نوع الطلب - سحايب ديرتي ===== */
+
+#orderTypeModal {
+    position: fixed;
+    inset: 0;
+    z-index: 10002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    direction: rtl;
+}
+
+.order-type-content {
+    width: 100%;
+    max-width: 390px;
+    padding: 28px 20px;
+    text-align: center;
+    background: linear-gradient(145deg, #241a12, #100d0b);
+    border: 1px solid #C39E6A;
+    border-radius: 22px;
+    box-shadow: 0 0 35px rgba(195, 158, 106, 0.2);
+    animation: orderModalShow .35s ease;
+}
+
+.order-type-logo {
+    font-size: 45px;
+    margin-bottom: 12px;
+}
+
+.order-type-content h2 {
+    color: #E8C065;
+    font-size: 25px;
+    margin: 8px 0;
+}
+
+.order-type-content p {
+    color: #ddd;
+    margin-bottom: 25px;
+}
+
+.order-type-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.order-type-btn {
+    width: 100%;
+    min-height: 105px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: .2s;
+}
+
+.order-type-btn:active {
+    transform: scale(.97);
+}
+
+.delivery-btn {
+    background: #241a12;
+    border: 2px solid #C39E6A;
+    color: white;
+}
+
+.pickup-btn {
+    background: linear-gradient(135deg, #E8C065, #B88B4D);
+    border: 2px solid #F5D99B;
+    color: #21170e;
+}
+
+.order-type-icon {
+    font-size: 30px;
+}
+
+.order-type-btn strong {
+    font-size: 19px;
+}
+
+.order-type-btn small {
+    font-size: 13px;
+}
+
+.order-type-note {
+    color: #C39E6A;
+    margin-top: 22px;
+    font-size: 13px;
+}
+
+@keyframes orderModalShow {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
