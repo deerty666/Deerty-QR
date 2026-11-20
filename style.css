@@ -1866,3 +1866,7 @@ body {
         transform: translateY(0) scale(1);
     }
 }
+/* إخفاء خيارات التوصيل القديمة داخل السلة */
+#legacyDeliveryOptions {
+    display: none !important;
+}
