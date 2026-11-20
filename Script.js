@@ -642,7 +642,12 @@ const clearCart = document.getElementById('clearCart');
 const getLocationBtn = document.getElementById('getLocationBtn');
 const locationStatus = document.getElementById('locationStatus');
 let userLocation = null; // لتخزين إحداثيات الموقع (Lat, Lng)
+// ===== نظام اختيار نوع الطلب =====
+let selectedDeliveryType = null;
 
+const orderTypeModal = document.getElementById('orderTypeModal');
+const chooseDeliveryBtn = document.getElementById('chooseDelivery');
+const choosePickupBtn = document.getElementById('choosePickup');
 /* Option modal */
 const optionModal = document.getElementById('optionModal');
 const modalTitle = document.getElementById('modalTitle');
@@ -1155,46 +1160,56 @@ clearCart.onclick = ()=>{
     cart = [];
     saveCart();
 }
+/* ====== نظام اختيار نوع الطلب الجديد ====== */
 
+function chooseOrderType(type) {
 
-/* ====== نوع الطلب + تحديد الموقع تلقائياً ====== */
+    selectedDeliveryType = type;
 
-document.querySelectorAll('input[name="deliveryType"]').forEach(radio => {
+    // مزامنة الاختيار مع الأزرار القديمة حتى تبقى
+    // حسابات السلة ورسالة واتساب متوافقة
+    const pickupRadio = document.getElementById('deliveryTypePickup');
+    const deliveryRadio = document.getElementById('deliveryTypeDelivery');
 
-    radio.addEventListener('change', function () {
+    if (pickupRadio) pickupRadio.checked = type === 'pickup';
+    if (deliveryRadio) deliveryRadio.checked = type === 'delivery';
 
-        // تحديث السلة ورسوم التوصيل
-        renderCart();
+    // تحديث الإجمالي
+    renderCart();
 
-        // إذا اختار العميل التوصيل
-        if (this.value === 'delivery') {
+    // إغلاق النافذة بعد الاختيار
+    if (orderTypeModal) {
+        orderTypeModal.style.display = 'none';
+    }
 
-            // تحديد الموقع مباشرة
-            setTimeout(() => {
-                getMyLocation();
-            }, 100);
+    // التوصيل: تحديد الموقع
+    if (type === 'delivery') {
+        setTimeout(() => getMyLocation(), 100);
+    }
 
+    // الاستلام: مسح الموقع السابق
+    if (type === 'pickup') {
+        userLocation = null;
+
+        if (locationStatus) {
+            locationStatus.innerText = '';
         }
+    }
+}
 
-        // إذا اختار العميل الاستلام
-        if (this.value === 'pickup') {
-
-            // مسح الموقع السابق
-            userLocation = null;
-
-            if (locationStatus) {
-                locationStatus.innerText = '';
-            }
-        }
-
-    });
-
+// ربط الأزرار
+chooseDeliveryBtn?.addEventListener('click', () => {
+    chooseOrderType('delivery');
 });
 
+choosePickupBtn?.addEventListener('click', () => {
+    chooseOrderType('pickup');
+});
 
-
-
-
+// إظهار نافذة الاختيار عند دخول المنيو
+if (orderTypeModal) {
+    orderTypeModal.style.display = 'flex';
+}
 /* =========================================
    إدارة زر الرجوع للسلة والإضافات - نسخة مصححة
 ========================================= */
