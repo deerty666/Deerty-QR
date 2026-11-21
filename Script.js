@@ -2512,12 +2512,6 @@ document.getElementById("bottomContactBtn")?.addEventListener("click", () => {
             return;
         }
 
-        // العنوان إجباري للتوصيل فقط
-        if (deliveryType === 'delivery' && !address) {
-            alert('فضلاً أدخل عنوان التوصيل');
-            addressInput?.focus();
-            return;
-        }
 
         // حفظ البيانات على جوال العميل
         customer = {
