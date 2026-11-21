@@ -2055,3 +2055,67 @@ body {
     position: relative;
     z-index: 10004;
 }
+
+/* =========================================
+   إصلاح ظهور زر أضف في أكمل وجبتك
+========================================= */
+
+#cartDrawer #cartSuggestions {
+    flex: 0 0 205px !important;
+    height: 205px !important;
+    min-height: 205px !important;
+    max-height: 205px !important;
+
+    display: flex !important;
+    align-items: stretch !important;
+
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+
+    padding: 8px 8px 10px !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* بطاقة الاقتراح */
+#cartDrawer .cart-suggestion-item {
+    flex: 0 0 135px !important;
+    width: 135px !important;
+    min-width: 135px !important;
+    height: 100% !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+
+    padding: 6px !important;
+    overflow: hidden !important;
+}
+
+/* صورة المنتج */
+#cartDrawer .cart-suggestion-item img {
+    flex: 0 0 65px !important;
+    width: 100% !important;
+    height: 65px !important;
+    object-fit: cover !important;
+}
+
+/* اسم المنتج */
+#cartDrawer .cart-suggestion-item h4 {
+    white-space: normal !important;
+    min-height: 30px;
+    line-height: 1.4;
+}
+
+/* السعر */
+#cartDrawer .cart-suggestion-item .price {
+    margin-top: 3px !important;
+}
+
+/* زر الإضافة - يبقى ظاهراً */
+#cartDrawer .cart-suggestion-item button {
+    flex: 0 0 auto !important;
+    min-height: 32px !important;
+    margin-top: auto !important;
+    padding: 5px !important;
+    font-size: 13px !important;
+}
