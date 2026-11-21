@@ -222,7 +222,9 @@ body {
     <div class="branch-option" data-branch="branch3">الروضة خالد بن الوليد</div>
 </div>
 <!-- نافذة اختيار نوع الطلب -->
-<div id="orderTypeModal" style="display:none;"
+
+<!-- نافذة اختيار نوع الطلب وبيانات العميل -->
+<div id="orderTypeModal" style="display:flex;"
      role="dialog" aria-modal="true"
      aria-labelledby="orderTypeTitle">
 
@@ -232,9 +234,10 @@ body {
 
         <h2 id="orderTypeTitle">أهلاً بك في ديرتي</h2>
 
-        <p>كيف تحب تستلم طلبك اليوم؟</p>
+        <p id="orderTypeQuestion">كيف تحب تستلم طلبك اليوم؟</p>
 
-        <div class="order-type-options">
+        <!-- اختيار نوع الطلب -->
+        <div class="order-type-options" id="orderTypeOptions">
 
             <button type="button" id="chooseDelivery"
                     class="order-type-btn delivery-btn">
@@ -252,11 +255,53 @@ body {
 
         </div>
 
+        <!-- بيانات العميل -->
+        <div id="customerOrderForm" style="display:none;text-align:right;">
+
+            <h3 style="color:var(--gold);text-align:center;">
+                👤 بيانات العميل
+            </h3>
+
+            <label for="customerName">الاسم</label>
+            <input type="text" id="customerName"
+                   placeholder="اكتب اسمك"
+                   autocomplete="name">
+
+            <label for="customerPhone">رقم الجوال</label>
+            <input type="tel" id="customerPhone"
+                   placeholder="05xxxxxxxx"
+                   inputmode="tel"
+                   autocomplete="tel">
+
+            <!-- يظهر للتوصيل فقط -->
+            
+
+                <p id="locationStatus"
+                   style="font-size:13px;color:#fff;text-align:center;">
+                </p>
+
+            </div>
+
+            <button type="button" id="confirmCustomerDetails"
+                    class="order-type-btn pickup-btn"
+                    style="margin-top:15px;">
+                تأكيد ومتابعة إلى المنيو
+            </button>
+
+            <button type="button" id="backToOrderType"
+                    style="width:100%;margin-top:10px;">
+                تغيير نوع الطلب
+            </button>
+
+        </div>
+
         <div class="order-type-note">
             ✨ يسعدنا خدمتك في سحايب ديرتي
         </div>
 
     </div>
+</div>
+
 </div>
 <div id="sections" aria-hidden="false"></div>
 <main id="menuList" role="list"></main>
