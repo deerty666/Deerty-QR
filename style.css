@@ -2044,3 +2044,14 @@ body {
 #cartDeliveryDetails.show {
     display: block !important;
 }
+
+/* إصلاح نافذة خيارات أكمل وجبتك */
+#optionModal {
+    z-index: 10003 !important;
+    position: fixed !important;
+}
+
+#optionModal .modal-content {
+    position: relative;
+    z-index: 10004;
+}
