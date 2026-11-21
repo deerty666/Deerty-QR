@@ -642,12 +642,7 @@ const clearCart = document.getElementById('clearCart');
 const getLocationBtn = document.getElementById('getLocationBtn');
 const locationStatus = document.getElementById('locationStatus');
 let userLocation = null; // لتخزين إحداثيات الموقع (Lat, Lng)
-// ===== نظام اختيار نوع الطلب =====
-let selectedDeliveryType = null;
 
-const orderTypeModal = document.getElementById('orderTypeModal');
-const chooseDeliveryBtn = document.getElementById('chooseDelivery');
-const choosePickupBtn = document.getElementById('choosePickup');
 /* Option modal */
 const optionModal = document.getElementById('optionModal');
 const modalTitle = document.getElementById('modalTitle');
@@ -1160,56 +1155,46 @@ clearCart.onclick = ()=>{
     cart = [];
     saveCart();
 }
-/* ====== نظام اختيار نوع الطلب الجديد ====== */
 
-function chooseOrderType(type) {
 
-    selectedDeliveryType = type;
+/* ====== نوع الطلب + تحديد الموقع تلقائياً ====== */
 
-    // مزامنة الاختيار مع الأزرار القديمة حتى تبقى
-    // حسابات السلة ورسالة واتساب متوافقة
-    const pickupRadio = document.getElementById('deliveryTypePickup');
-    const deliveryRadio = document.getElementById('deliveryTypeDelivery');
+document.querySelectorAll('input[name="deliveryType"]').forEach(radio => {
 
-    if (pickupRadio) pickupRadio.checked = type === 'pickup';
-    if (deliveryRadio) deliveryRadio.checked = type === 'delivery';
+    radio.addEventListener('change', function () {
 
-    // تحديث الإجمالي
-    renderCart();
+        // تحديث السلة ورسوم التوصيل
+        renderCart();
 
-    // إغلاق النافذة بعد الاختيار
-    if (orderTypeModal) {
-        orderTypeModal.style.display = 'none';
-    }
+        // إذا اختار العميل التوصيل
+        if (this.value === 'delivery') {
 
-    // التوصيل: تحديد الموقع
-    if (type === 'delivery') {
-        setTimeout(() => getMyLocation(), 100);
-    }
+            // تحديد الموقع مباشرة
+            setTimeout(() => {
+                getMyLocation();
+            }, 100);
 
-    // الاستلام: مسح الموقع السابق
-    if (type === 'pickup') {
-        userLocation = null;
-
-        if (locationStatus) {
-            locationStatus.innerText = '';
         }
-    }
-}
 
-// ربط الأزرار
-chooseDeliveryBtn?.addEventListener('click', () => {
-    chooseOrderType('delivery');
+        // إذا اختار العميل الاستلام
+        if (this.value === 'pickup') {
+
+            // مسح الموقع السابق
+            userLocation = null;
+
+            if (locationStatus) {
+                locationStatus.innerText = '';
+            }
+        }
+
+    });
+
 });
 
-choosePickupBtn?.addEventListener('click', () => {
-    chooseOrderType('pickup');
-});
 
-// إظهار نافذة الاختيار عند دخول المنيو
-if (orderTypeModal) {
-    orderTypeModal.style.display = 'flex';
-}
+
+
+
 /* =========================================
    إدارة زر الرجوع للسلة والإضافات - نسخة مصححة
 ========================================= */
@@ -1339,24 +1324,27 @@ sendWhatsapp.addEventListener('click', () => {
         return;
     }
     // إجبار العميل على اختيار نوع الطلب
-    if (!selectedDeliveryType) {
-    alert('⚠️ اختر توصيل أو استلام أولاً');
-    return;
-}
-// العنوان التفصيلي للعميل
-const manualAddress =
-    document.getElementById('customerAddress')?.value.trim() || '';
-const customerName =
-    document.getElementById('customerName')?.value.trim() || '';
+    const selectedDeliveryType = document.querySelector(
+        'input[name="deliveryType"]:checked'
+    );
 
-const customerPhone =
-    document.getElementById('customerPhone')?.value.trim() || '';
+    if (!selectedDeliveryType) {
+        alert('⚠️ فضلاً اختر نوع الطلب أولاً: توصيل أو استلام من الفرع');
+        return;
+    }
+    // العنوان اليدوي
+    const manualAddress =
+        document.getElementById('manualAddress')?.value.trim() || '';
+
     // بيانات الفرع
     const branchDeliveryFee = currentBranch.deliveryFee || 0;
     const whatsappNumber = currentBranch.whatsapp;
 
     // نوع الطلب
-    const deliveryType = selectedDeliveryType;
+    const deliveryType =
+        document.querySelector(
+            'input[name="deliveryType"]:checked'
+        )?.value;
 
     // =====================================================
     // 🍽️ بداية رسالة الواتساب
@@ -1365,20 +1353,11 @@ const customerPhone =
     const lines = [];
 
     lines.push('🍽️ طلب جديد — سحايب ديرتي');
-lines.push('');
-lines.push(`📍 الفرع: ${currentBranch.name}`);
-lines.push('');
+    lines.push('');
+    lines.push(`📍 الفرع: ${currentBranch.name}`);
+    lines.push('');
+    lines.push('━━━━━━━━━━━━');
 
-lines.push('👤 بيانات العميل');
-lines.push(`الاسم: ${customerName || 'غير محدد'}`);
-lines.push(`الجوال: ${customerPhone || 'غير محدد'}`);
-
-if (deliveryType === 'delivery' && manualAddress) {
-    lines.push(`🏠 العنوان التفصيلي: ${manualAddress}`);
-}
-
-lines.push('');
-lines.push('━━━━━━━━━━━━');
     let subtotal = 0;
 
     // =====================================================
@@ -1481,19 +1460,7 @@ lines.push('━━━━━━━━━━━━');
     // =====================================================
 
     if (deliveryType === 'delivery') {
-// التأكد من تحديد موقع العميل قبل إرسال طلب التوصيل
-if (!userLocation && !manualAddress) {
-    alert('📍 فضلاً حدد موقعك أو اكتب عنوانك التفصيلي قبل إرسال الطلب');
 
-    if (locationStatus) {
-        locationStatus.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
-        });
-    }
-
-    return;
-}
         lines.push(
             `2. نوع الطلب: توصيل (فرع ${currentBranch.name})`
         );
