@@ -2152,8 +2152,9 @@ document.getElementById("bottomContactBtn")?.addEventListener("click", () => {
     });
 })();
 
-/* ====================== 21. شاشة بيانات العميل ====================== */
-(function () {
+/* ====================== شاشة بيانات العميل ====================== */
+document.addEventListener("DOMContentLoaded", function () {
+
     const startScreen = document.getElementById("customerStartScreen");
     const nameInput = document.getElementById("customerName");
     const phoneInput = document.getElementById("customerPhone");
@@ -2164,7 +2165,10 @@ document.getElementById("bottomContactBtn")?.addEventListener("click", () => {
     const startPickup = document.getElementById("startPickup");
     const manualAddress = document.getElementById("manualAddress");
 
-    if (!startScreen || !continueBtn) return;
+    if (!startScreen || !continueBtn) {
+        console.error("عناصر شاشة البداية غير موجودة");
+        return;
+    }
 
     const STORAGE_KEY = "deerty_customer_info";
     let customer = {};
@@ -2175,12 +2179,15 @@ document.getElementById("bottomContactBtn")?.addEventListener("click", () => {
         customer = {};
     }
 
+    // استعادة البيانات المحفوظة
     if (nameInput) nameInput.value = customer.name || "";
     if (phoneInput) phoneInput.value = customer.phone || "";
     if (addressInput) addressInput.value = customer.address || "";
 
+    // إظهار/إخفاء حقل العنوان
     function updateStartAddress() {
-        const isDelivery = startDelivery?.checked === true;
+        const isDelivery = startDelivery && startDelivery.checked;
+
         if (addressField) {
             addressField.style.display = isDelivery ? "block" : "none";
         }
@@ -2189,52 +2196,75 @@ document.getElementById("bottomContactBtn")?.addEventListener("click", () => {
         }
     }
 
-    startDelivery?.addEventListener("change", updateStartAddress);
-    startPickup?.addEventListener("change", updateStartAddress);
+    if (startDelivery) {
+        startDelivery.addEventListener("change", updateStartAddress);
+    }
+    if (startPickup) {
+        startPickup.addEventListener("change", updateStartAddress);
+    }
 
-    if (customer.deliveryType === "delivery") {
+    // استعادة نوع الطلب السابق
+    if (customer.deliveryType === "delivery" && startDelivery) {
         startDelivery.checked = true;
-    } else if (customer.deliveryType === "pickup") {
+    } else if (customer.deliveryType === "pickup" && startPickup) {
         startPickup.checked = true;
     }
 
     updateStartAddress();
 
+    // زر ابدأ الطلب
     continueBtn.addEventListener("click", function () {
-        const name = nameInput?.value.trim() || "";
-        const phone = phoneInput?.value.trim() || "";
-        const address = addressInput?.value.trim() || "";
+
+        const name = nameInput ? nameInput.value.trim() : "";
+        const phone = phoneInput ? phoneInput.value.trim() : "";
+        const address = addressInput ? addressInput.value.trim() : "";
+
         const deliveryType = document.querySelector(
             'input[name="startDeliveryType"]:checked'
         )?.value;
 
+        // لازم يختار توصيل أو استلام
         if (!deliveryType) {
             alert("فضلاً اختر التوصيل أو الاستلام من الفرع");
             return;
         }
 
+        // التحقق من رقم الجوال إذا أدخله
         if (phone && phone.replace(/\D/g, "").length < 9) {
             alert("رقم الجوال غير صحيح، يرجى التأكد منه");
-            phoneInput.focus();
+            if (phoneInput) phoneInput.focus();
             return;
         }
 
-        customer = { name, phone, address, deliveryType };
+        // حفظ البيانات
+        customer = {
+            name: name,
+            phone: phone,
+            address: address,
+            deliveryType: deliveryType
+        };
+
         localStorage.setItem(STORAGE_KEY, JSON.stringify(customer));
 
-        if (manualAddress) manualAddress.value = address;
+        // نقل العنوان إلى السلة
+        if (manualAddress) {
+            manualAddress.value = address;
+        }
 
+        // مزامنة نوع الطلب مع السلة
         const cartRadio = document.querySelector(
             `input[name="deliveryType"][value="${deliveryType}"]`
         );
+
         if (cartRadio) {
             cartRadio.checked = true;
             cartRadio.dispatchEvent(new Event("change", { bubbles: true }));
         }
 
+        // إخفاء شاشة البداية
         startScreen.style.display = "none";
     });
-})();
+});
 
 /* ====================== 22. تشغيل أولي ====================== */
 renderSections();
