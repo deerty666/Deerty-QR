@@ -1352,11 +1352,24 @@ sendWhatsapp.addEventListener('click', () => {
 
     const lines = [];
 
-    lines.push('🍽️ طلب جديد — سحايب ديرتي');
-    lines.push('');
-    lines.push(`📍 الفرع: ${currentBranch.name}`);
-    lines.push('');
-    lines.push('━━━━━━━━━━━━');
+// استرجاع بيانات العميل من جهازه
+let customerInfo = {};
+
+try {
+    customerInfo = JSON.parse(
+        localStorage.getItem('deerty_customer_info') || '{}'
+    );
+} catch (e) {
+    customerInfo = {};
+}
+
+lines.push('🍽️ طلب جديد — سحايب ديرتي');
+lines.push('');
+lines.push(`👤 اسم العميل: ${customerInfo.name || 'غير مسجل'}`);
+lines.push(`📱 رقم الجوال: ${customerInfo.phone || 'غير مسجل'}`);
+lines.push(`📍 الفرع: ${currentBranch.name}`);
+lines.push('');
+lines.push('━━━━━━━━━━━━');
 
     let subtotal = 0;
 
