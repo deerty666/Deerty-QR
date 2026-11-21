@@ -2507,12 +2507,6 @@ document.getElementById("bottomContactBtn")?.addEventListener("click", () => {
             return;
         }
 
-        if (deliveryType === 'delivery' && !address) {
-            alert('فضلاً اكتب الحي والعنوان للتوصيل');
-            addressInput.focus();
-            return;
-        }
-
         // حفظ بيانات العميل على جهازه فقط
         customer = {
             name,
